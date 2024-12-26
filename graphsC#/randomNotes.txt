@@ -1,0 +1,47 @@
+a graph is a non-linear (non sequential) data structure that consists of nodes and edges. The nodes are sometimes also referred to as vertices and 
+edges are the connections between nodes.
+
+graph data struct does not require any specific rules regarding connections between nodes 
+
+types of graphs:
+- directed graph: edges have a direction
+- undirected graph: edges do not have a direction
+- weighted graph: edges have a weight
+- unweighted graph: edges do not have a weight
+- cyclic graph: edges form a cycle
+- acyclic graph: edges do not form a cycle
+
+
+representing a graph in memory: 
+- adjacency matrix: a 2D array of size n x n (where n is the number of nodes) where the value at row i and column j represents the edge between node i and node j.
+    - pros: 
+        - easy to add or remove edges
+        - easy to check if there is an edge between two nodes
+    - cons:
+        - takes up more space
+        - slower to iterate over all edges 
+- adjacency list: an array of lists where each list represents the nodes that are connected to the node at the index of the list.
+    - pros:
+        - takes up less space
+        - faster to iterate over all edges
+    - cons:
+        - harder to add or remove edges
+        - harder to check if there is an edge between two nodes
+
+basicGraph -- take an array of linked lists. The index of the arrary represents the parent node 
+         ex: private LinkedList<int>[] linkedListArrary;
+
+adding the child nodes in the linked list and if the edge is bidirectional, we willl reverse the role of parent and child node
+
+basicGraph.cs
+- constructor
+- addEdge
+    - add the child node to the linked list of the parent node
+    ex: public void addEdge(int vertex, int adVertex) {
+        linkedListArrary[vertex].AddLast(adVertex);
+    }
+- removeEdge
+- printGraph
+- PrintAdjacencyList
+- CreateAdjacencyMatrix
+- PrintAdjacencyMatrix  
