@@ -1,0 +1,7 @@
+C:\Users\derekdeming\source\learning\graphs\graphsC#\GraphStruct\obj\Debug\net6.0\GraphStruct.csproj.AssemblyReference.cache
+C:\Users\derekdeming\source\learning\graphs\graphsC#\GraphStruct\obj\Debug\net6.0\GraphStruct.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\derekdeming\source\learning\graphs\graphsC#\GraphStruct\obj\Debug\net6.0\GraphStruct.AssemblyInfoInputs.cache
+C:\Users\derekdeming\source\learning\graphs\graphsC#\GraphStruct\obj\Debug\net6.0\GraphStruct.AssemblyInfo.cs
+C:\Users\derekdeming\source\learning\graphs\graphsC#\GraphStruct\obj\Debug\net6.0\GraphStruct.csproj.CoreCompileInputs.cache
+C:\Users\derekdeming\source\learning\graphs\graphsC#\GraphStruct\obj\Debug\net6.0\GraphStruct.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\derekdeming\source\learning\graphs\graphsC#\GraphStruct\obj\Debug\net6.0\GraphStruct.sourcelink.json

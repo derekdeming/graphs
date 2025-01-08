@@ -8,42 +8,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GraphStruct
+namespace GraphDataStructureInC_Sharp
 {
-    public class startup
+    public class Startup
     {
-        // call this at runtime and use method to add services to the container
+        // method will get called by runtime. use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpContextAccessor();
+            services.AddHttpContextAccessor(); //or services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
         }
 
-        // use method to configure the HTTP request pipeline
+        // @runtime -- use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
+
+            _ = app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
                     #region Type 1 : Graph Using LinkedList
-                    // basicGraph graph = new basicGraph(8);
-                    // graph.addEdge(0, 1);
-                    // graph.addEdge(0, 4);
-                    // graph.addEdge(1, 2);
-                    // graph.addEdge(1, 3);
-                    // graph.addEdge(1, 4);
-                    // graph.addEdge(2, 3);
-                    // graph.addEdge(3, 4);
-                    // graph.addEdge(4, 5);
-                    // graph.addEdge(5, 6);
-                    // graph.addEdge(6, 7);
-                    // graph.PrintAdjacencyList();
-                    // graph.CreateAdjacencyMatrix(graph);
+                    //BasicGraph graph = new BasicGraph(8);
+                    //graph.addEdge(0, 2);
+                    //graph.addEdge(1, 3);
+                    //graph.addEdge(1, 4);
+                    //graph.addEdge(2, 5);
+                    //graph.addEdge(3, 5);
+                    //graph.addEdge(4, 6);
+                    //graph.addEdge(6, 7);
+                    //graph.PrintAdjanceyList();
+                    //graph.CreateAdjanceyMatrix(graph);
                     #endregion
 
                     #region Type 2 : Non-Zero Index Based Graph using Custom class
@@ -144,30 +143,30 @@ namespace GraphStruct
 
                     #region Weighted Generic Graph<T> : Shortest path - Dijkstra's Algorithm
                     //#region Create New Graph with Nodes and Edges
-                    WeightedGraph<int> graph = new WeightedGraph<int>(true, true);
-                    WeightedGraphNode<int> n1 = graph.AddNode(1);
-                    WeightedGraphNode<int> n2 = graph.AddNode(2);
-                    WeightedGraphNode<int> n3 = graph.AddNode(3);
-                    WeightedGraphNode<int> n4 = graph.AddNode(4);
-                    WeightedGraphNode<int> n5 = graph.AddNode(5);
-                    WeightedGraphNode<int> n6 = graph.AddNode(6);
-                    WeightedGraphNode<int> n7 = graph.AddNode(7);
-                    WeightedGraphNode<int> n8 = graph.AddNode(8);
-                    graph.AddEdge(n1, n2, 9);
-                    graph.AddEdge(n1, n3, 5);
-                    graph.AddEdge(n2, n1, 3);
-                    graph.AddEdge(n2, n4, 18);
-                    graph.AddEdge(n3, n4, 12);
-                    graph.AddEdge(n4, n8, 8);
-                    graph.AddEdge(n4, n2, 2);
-                    graph.AddEdge(n5, n4, 9);
-                    graph.AddEdge(n5, n6, 2);
-                    graph.AddEdge(n5, n8, 3);
-                    graph.AddEdge(n5, n7, 5);
-                    graph.AddEdge(n6, n7, 1);
-                    graph.AddEdge(n7, n5, 4);
-                    graph.AddEdge(n7, n8, 6);
-                    graph.AddEdge(n8, n5, 3);
+                    //WeightedGraph<int> graph = new WeightedGraph<int>(true, true);
+                    //WeightedGraphNode<int> n1 = graph.AddNode(1);
+                    //WeightedGraphNode<int> n2 = graph.AddNode(2);
+                    //WeightedGraphNode<int> n3 = graph.AddNode(3);
+                    //WeightedGraphNode<int> n4 = graph.AddNode(4);
+                    //WeightedGraphNode<int> n5 = graph.AddNode(5);
+                    //WeightedGraphNode<int> n6 = graph.AddNode(6);
+                    //WeightedGraphNode<int> n7 = graph.AddNode(7);
+                    //WeightedGraphNode<int> n8 = graph.AddNode(8);
+                    //graph.AddEdge(n1, n2, 9);
+                    //graph.AddEdge(n1, n3, 5);
+                    //graph.AddEdge(n2, n1, 3);
+                    //graph.AddEdge(n2, n4, 18);
+                    //graph.AddEdge(n3, n4, 12);
+                    //graph.AddEdge(n4, n8, 8);
+                    //graph.AddEdge(n4, n2, 2);
+                    //graph.AddEdge(n5, n4, 9);
+                    //graph.AddEdge(n5, n6, 2);
+                    //graph.AddEdge(n5, n8, 3);
+                    //graph.AddEdge(n5, n7, 5);
+                    //graph.AddEdge(n6, n7, 1);
+                    //graph.AddEdge(n7, n5, 4);
+                    //graph.AddEdge(n7, n8, 6);
+                    //graph.AddEdge(n8, n5, 3);
                     //#endregion
                     //await context.Response.WriteAsync("================================================\n");
                     //await context.Response.WriteAsync("Generic Weighted Directed Graph\n");
@@ -203,7 +202,7 @@ namespace GraphStruct
                         "1111100011001100100010001",
                         "1111100011001100001000100"
                     };
-                    bool[][] map = new bool[lines.Length][]; // 2D array
+                    bool[][] map = new bool[lines.Length][];
                     for (int i = 0; i < lines.Length; i++)
                     {
                         map[i] = lines[i].Select(c => int.Parse(c.ToString()) == 0).ToArray();
