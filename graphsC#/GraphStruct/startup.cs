@@ -12,7 +12,7 @@ namespace GraphStruct
 {
     public class startup
     {
-        // use method to add services to the container
+        // call this at runtime and use method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpContextAccessor();
@@ -144,30 +144,30 @@ namespace GraphStruct
 
                     #region Weighted Generic Graph<T> : Shortest path - Dijkstra's Algorithm
                     //#region Create New Graph with Nodes and Edges
-                    //WeightedGraph<int> graph = new WeightedGraph<int>(true, true);
-                    //WeightedGraphNode<int> n1 = graph.AddNode(1);
-                    //WeightedGraphNode<int> n2 = graph.AddNode(2);
-                    //WeightedGraphNode<int> n3 = graph.AddNode(3);
-                    //WeightedGraphNode<int> n4 = graph.AddNode(4);
-                    //WeightedGraphNode<int> n5 = graph.AddNode(5);
-                    //WeightedGraphNode<int> n6 = graph.AddNode(6);
-                    //WeightedGraphNode<int> n7 = graph.AddNode(7);
-                    //WeightedGraphNode<int> n8 = graph.AddNode(8);
-                    //graph.AddEdge(n1, n2, 9);
-                    //graph.AddEdge(n1, n3, 5);
-                    //graph.AddEdge(n2, n1, 3);
-                    //graph.AddEdge(n2, n4, 18);
-                    //graph.AddEdge(n3, n4, 12);
-                    //graph.AddEdge(n4, n8, 8);
-                    //graph.AddEdge(n4, n2, 2);
-                    //graph.AddEdge(n5, n4, 9);
-                    //graph.AddEdge(n5, n6, 2);
-                    //graph.AddEdge(n5, n8, 3);
-                    //graph.AddEdge(n5, n7, 5);
-                    //graph.AddEdge(n6, n7, 1);
-                    //graph.AddEdge(n7, n5, 4);
-                    //graph.AddEdge(n7, n8, 6);
-                    //graph.AddEdge(n8, n5, 3);
+                    WeightedGraph<int> graph = new WeightedGraph<int>(true, true);
+                    WeightedGraphNode<int> n1 = graph.AddNode(1);
+                    WeightedGraphNode<int> n2 = graph.AddNode(2);
+                    WeightedGraphNode<int> n3 = graph.AddNode(3);
+                    WeightedGraphNode<int> n4 = graph.AddNode(4);
+                    WeightedGraphNode<int> n5 = graph.AddNode(5);
+                    WeightedGraphNode<int> n6 = graph.AddNode(6);
+                    WeightedGraphNode<int> n7 = graph.AddNode(7);
+                    WeightedGraphNode<int> n8 = graph.AddNode(8);
+                    graph.AddEdge(n1, n2, 9);
+                    graph.AddEdge(n1, n3, 5);
+                    graph.AddEdge(n2, n1, 3);
+                    graph.AddEdge(n2, n4, 18);
+                    graph.AddEdge(n3, n4, 12);
+                    graph.AddEdge(n4, n8, 8);
+                    graph.AddEdge(n4, n2, 2);
+                    graph.AddEdge(n5, n4, 9);
+                    graph.AddEdge(n5, n6, 2);
+                    graph.AddEdge(n5, n8, 3);
+                    graph.AddEdge(n5, n7, 5);
+                    graph.AddEdge(n6, n7, 1);
+                    graph.AddEdge(n7, n5, 4);
+                    graph.AddEdge(n7, n8, 6);
+                    graph.AddEdge(n8, n5, 3);
                     //#endregion
                     //await context.Response.WriteAsync("================================================\n");
                     //await context.Response.WriteAsync("Generic Weighted Directed Graph\n");
@@ -206,26 +206,32 @@ namespace GraphStruct
                     bool[][] map = new bool[lines.Length][]; // 2D array
                     for (int i = 0; i < lines.Length; i++)
                     {
-                        map[i] = lines[i].Select(c => int.Parse(c.ToString()) == 1).ToArray();
+                        map[i] = lines[i].Select(c => int.Parse(c.ToString()) == 0).ToArray();
                     }
 
-                    WeightedGraph<int> gameMap = new WeightedGraph<int>(false, true);
+                    WeightedGraph<string> graph = new WeightedGraph<string>(false, true);
                     for (int i = 0; i < map.Length; i++)
                     {
                         for (int j = 0; j < map[i].Length; j++)
                         {
-                            if (map[i][j]) // true /false 
+                            if (map[i][j]) //true/false
                             {
                                 WeightedGraphNode<string> from = graph.AddNode($"{i}-{j}");
+
                                 if (i > 0 && map[i - 1][j])
                                 {
-                                    WeightedGraphNode<string> to = graph.AddNode($"{i - 1}-{j}");
+                                    WeightedGraphNode<string> to = graph.Nodes.Find(n => n.Value == $"{i - 1}-{j}");
+                                    graph.AddEdge(from, to, 1);
+                                }
+
+                                if (j > 0 && map[i][j - 1])
+                                {
+                                    WeightedGraphNode<string> to = graph.Nodes.Find(n => n.Value == $"{i}-{j - 1}");
                                     graph.AddEdge(from, to, 1);
                                 }
                             }
                         }
                     }
-
                     WeightedGraphNode<string> source = graph.Nodes.Find(n => n.Value == "0-0");
                     WeightedGraphNode<string> target = graph.Nodes.Find(n => n.Value == "16-24");
                     //calling Dijkstra Algorithm to find the shortest path

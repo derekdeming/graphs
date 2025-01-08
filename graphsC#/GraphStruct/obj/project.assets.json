@@ -1,11 +1,46 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "PriorityQueue/0.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/ConcurrentPriorityQueue.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net45/ConcurrentPriorityQueue.dll": {
+            "related": ".pdb"
+          }
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "PriorityQueue/0.1.0": {
+      "sha512": "rG/stWqaQZUlgAT6OD8H9LUKpdZOtKvzGFQyjKRP+fW+V/0in0zCRkFKfTsZJKppjz3LoX4JcnoCFTz7PSFYXQ==",
+      "type": "package",
+      "path": "priorityqueue/0.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/ConcurrentPriorityQueue.dll",
+        "lib/net45/ConcurrentPriorityQueue.pdb",
+        "priorityqueue.0.1.0.nupkg.sha512",
+        "priorityqueue.nuspec",
+        "src/AbstractPriorityQueue.cs",
+        "src/ConcurrentFixedSizePriorityQueue.cs",
+        "src/ConcurrentPriorityQueue.cs",
+        "src/IPriorityQueue.cs",
+        "src/Properties/AssemblyInfo.cs"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "PriorityQueue >= 0.1.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\derekdeming\\.nuget\\packages\\": {},
@@ -56,6 +91,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "PriorityQueue": {
+            "target": "Package",
+            "version": "[0.1.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -78,5 +119,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'PriorityQueue 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "PriorityQueue",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
